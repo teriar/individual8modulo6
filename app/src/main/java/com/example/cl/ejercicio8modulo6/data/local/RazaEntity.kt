@@ -5,7 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "tabla_razas")
 class RazaEntity (
-    @PrimaryKey(autoGenerate = true) var id:Long,
-    val raza: String
 
-    )
+    val raza: String){
+
+    @PrimaryKey(autoGenerate = true) var id:Long = 0
+}
