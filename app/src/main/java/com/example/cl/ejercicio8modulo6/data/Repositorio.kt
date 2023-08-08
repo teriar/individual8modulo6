@@ -16,6 +16,7 @@ class Repositorio(private val razaApi: RazaApi, private val razaDao: RazaDao) {
             keys.forEach{
                 val razaEntity = RazaEntity(it)
                 razaDao.insertRaza(razaEntity)
+
             }
 
         }
