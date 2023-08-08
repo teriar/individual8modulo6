@@ -28,6 +28,7 @@ abstract class RazaDatabase:RoomDatabase() {
 
                 INSTANCE = instance
                 return instance
+
             }
         }
     }
