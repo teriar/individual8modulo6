@@ -22,15 +22,20 @@ class ListadoRazas : Fragment() {
         binding = FragmentListadoRazasBinding.inflate(layoutInflater,container,false)
 
         initAdapter()
-        razaViewModel.getData()
+       razaViewModel.getData()
 
         return  binding.root
     }
 
     private fun initAdapter() {
         val adapter = AdapterRazas()
+
+
+        razaViewModel.razaLiveDAta().observe(viewLifecycleOwner){
+            adapter.setData(it)
+        }
         binding.recyclerView.adapter = adapter
-        razaViewModel
+
     }
 
 

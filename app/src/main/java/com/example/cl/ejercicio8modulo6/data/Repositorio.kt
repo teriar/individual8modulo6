@@ -1,5 +1,6 @@
 package com.example.cl.ejercicio8modulo6.data
 
+import androidx.lifecycle.LiveData
 import com.example.cl.ejercicio8modulo6.data.local.RazaDao
 import com.example.cl.ejercicio8modulo6.data.local.RazaEntity
 import com.example.cl.ejercicio8modulo6.data.remote.Raza
@@ -7,6 +8,8 @@ import com.example.cl.ejercicio8modulo6.data.remote.RazaApi
 import retrofit2.Response
 
 class Repositorio(private val razaApi: RazaApi, private val razaDao: RazaDao) {
+
+    fun obtenerRazaEntity(): LiveData<List<RazaEntity>> = razaDao.getRazas()
 
     suspend fun  getRazas(){
         val response:Response<Raza> = razaApi.getData()// aca llegan los datos
