@@ -40,13 +40,17 @@ class DetalleFragment : Fragment() {
         binding = FragmentDetalleBinding.inflate(layoutInflater,container,false)
         initAdapter()
         razaViewModel.getDataPerro(param1.toString())
-        binding.textView.text = param1.toString()
+
 
         return binding.root
     }
 
     private fun initAdapter() {
-
+          val adapter = AdapterDetalle()
+          binding.recyclerview.adapter = adapter
+        razaViewModel.detalleLiveData(param1.toString()).observe(viewLifecycleOwner){
+            adapter.setData(it)
+        }
     }
 
 }
