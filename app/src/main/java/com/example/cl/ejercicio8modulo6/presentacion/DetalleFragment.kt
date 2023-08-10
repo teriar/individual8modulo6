@@ -38,11 +38,15 @@ class DetalleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentDetalleBinding.inflate(layoutInflater,container,false)
-
+        initAdapter()
         razaViewModel.getDataPerro(param1.toString())
         binding.textView.text = param1.toString()
 
         return binding.root
+    }
+
+    private fun initAdapter() {
+
     }
 
 }

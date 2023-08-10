@@ -12,6 +12,7 @@ import retrofit2.Response
 class Repositorio(private val razaApi: RazaApi, private val razaDao: RazaDao) {
 
     fun obtenerRazaEntity(): LiveData<List<RazaEntity>> = razaDao.getRazas()
+    fun obtenerDetalleEntity(id:String):LiveData<List<RazaDetalleEntity>> = razaDao.getImagesRaza(id)
 
     suspend fun  getRazas(){
         val response:Response<Raza> = razaApi.getData()// aca llegan los datos
