@@ -1,5 +1,6 @@
 package com.example.cl.ejercicio8modulo6.presentacion
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation
@@ -39,8 +40,11 @@ class AdapterRazas: RecyclerView.Adapter<AdapterRazas.ItemRazasVIewHolder>() {
 
         fun bind(raza:RazaEntity){
            bindingraza.txtRaza.text = raza.raza
+
             bindingraza.cardview.setOnClickListener{
-                Navigation.findNavController(bindingraza.root).navigate(R.id.action_listadoRazas_to_detalleFragment)
+                val bundle = Bundle()
+                bundle.putString("id",raza.raza)
+                Navigation.findNavController(bindingraza.root).navigate(R.id.action_listadoRazas_to_detalleFragment, bundle)
             }
 
         }

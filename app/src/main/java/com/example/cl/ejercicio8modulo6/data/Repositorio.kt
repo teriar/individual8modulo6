@@ -1,7 +1,9 @@
 package com.example.cl.ejercicio8modulo6.data
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.cl.ejercicio8modulo6.data.local.RazaDao
+import com.example.cl.ejercicio8modulo6.data.local.RazaDetalleEntity
 import com.example.cl.ejercicio8modulo6.data.local.RazaEntity
 import com.example.cl.ejercicio8modulo6.data.remote.Raza
 import com.example.cl.ejercicio8modulo6.data.remote.RazaApi
@@ -22,6 +24,22 @@ class Repositorio(private val razaApi: RazaApi, private val razaDao: RazaDao) {
 
             }
 
+        }else{
+            Log.e("repositorio", response.errorBody().toString())
+        }
+    }
+
+    suspend fun  getDetallePerro(id:String){
+        val response = razaApi.getImages(id)// aca llegan los datos
+        if(response.isSuccessful){
+                response.body()!!.message.forEach {
+                    val perroDetalle = RazaDetalleEntity(id,it)
+                    razaDao.insertarRazaDetalle(perroDetalle)
+                }
+
+
+        }else{
+            Log.e("repositorio", response.errorBody().toString())
         }
     }
 
