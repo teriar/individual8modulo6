@@ -7,6 +7,7 @@ import com.example.cl.ejercicio8modulo6.data.local.RazaDetalleEntity
 import com.example.cl.ejercicio8modulo6.data.local.RazaEntity
 import com.example.cl.ejercicio8modulo6.data.remote.Raza
 import com.example.cl.ejercicio8modulo6.data.remote.RazaApi
+import com.example.cl.ejercicio8modulo6.data.remote.toEntity
 import retrofit2.Response
 
 class Repositorio(private val razaApi: RazaApi, private val razaDao: RazaDao) {
@@ -20,7 +21,8 @@ class Repositorio(private val razaApi: RazaApi, private val razaDao: RazaDao) {
             val message = response.body()!!.message // solo sacando la partte de maessage , sin status
             val keys = message.keys
             keys.forEach{
-                val razaEntity = RazaEntity(it)
+                //val razaEntity = RazaEntity(it)
+                val razaEntity = it.toEntity()
                 razaDao.insertRaza(razaEntity)
 
             }
